@@ -11,8 +11,8 @@ class ResumeProcessorService
         embedding = generate_embedding(text)   
         
         @user.resumes.create!(
-            file_path: @file_path,
-            text: text,
+            filename: File.basename(@file_path),
+            content_text: text,
             embedding: embedding
         )
     end
