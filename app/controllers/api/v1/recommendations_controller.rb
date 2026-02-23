@@ -22,7 +22,8 @@ module Api
         }, status: :ok
       rescue => e
         Rails.logger.error("[RecommendationsController] #{e.message}")
-        render json: { error: 'Failed to process recommendation.' }, status: :internal_server_error
+        error_msg = e.message.include?('OpenAI') ? 'OpenAI API Error: Please check your API key quota or try again later.' : 'Failed to process recommendation.'
+        render json: { error: error_msg }, status: :internal_server_error
       end
 
       def generate_cover_letter
@@ -40,7 +41,8 @@ module Api
         render json: { cover_letter: letter }, status: :ok
       rescue => e
         Rails.logger.error("[RecommendationsController] Cover Letter Error: #{e.message}")
-        render json: { error: 'Failed to generate cover letter.' }, status: :internal_server_error
+        error_msg = e.message.include?('OpenAI') ? 'OpenAI API Error: Please check your API key quota or try again later.' : 'Failed to generate cover letter.'
+        render json: { error: error_msg }, status: :internal_server_error
       end
     end
   end
