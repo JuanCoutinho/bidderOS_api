@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       post 'auth/login',    to: 'auth#login'
       get  'auth/me',       to: 'auth#me'
       resources :resumes, only: [:index, :create]
+      post 'recommendations', to: 'recommendations#index'
+      post 'recommendations/cover_letter', to: 'recommendations#generate_cover_letter'
     end
   end
 end

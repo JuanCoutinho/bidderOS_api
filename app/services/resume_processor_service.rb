@@ -1,7 +1,8 @@
 class ResumeProcessorService
-  def initialize(user, file_path)
+  def initialize(user, file_path, original_filename)
     @user = user
     @file_path = file_path
+    @original_filename = original_filename
     @embedding_service = EmbeddingService.new
   end
 
@@ -10,7 +11,7 @@ class ResumeProcessorService
     embedding = generate_embedding(text)
 
     @user.resumes.create!(
-      filename: File.basename(@file_path),
+      filename: @original_filename,
       content_text: text,
       embedding: embedding
     )

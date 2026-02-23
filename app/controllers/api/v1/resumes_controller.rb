@@ -16,7 +16,7 @@ module Api
 
         params[:files].each do |file|
           begin
-            ResumeProcessorService.new(current_user, file.path).call
+            ResumeProcessorService.new(current_user, file.path, file.original_filename).call
             processed << file.original_filename
           rescue => e
             errors << { file: file.original_filename, reason: e.message }
