@@ -7,9 +7,7 @@ module Api
       end
 
       def create
-        unless params[:files].is_a?(Array)
-          return render json: { error: 'No files sent or invalid format.' }, status: :bad_request
-        end
+        return render json: { error: 'No files sent or invalid format.' }, status: :bad_request unless params[:files].is_a?(Array)
 
         processed = []
         errors = []
@@ -23,11 +21,9 @@ module Api
           end
         end
 
-        if errors.empty?
-          render json: { message: 'Upload completed successfully!', processed: processed }, status: :ok
-        else
-          render json: { message: 'Processing completed with warnings', processed: processed, errors: errors }, status: :unprocessable_entity
-        end
+        return render json: { message: 'Processing completed with warnings', processed: processed, errors: errors }, status: :unprocessable_entity unless errors.empty?
+
+        render json: { message: 'Upload completed successfully!', processed: processed }, status: :ok
       end
     end
   end

@@ -5,9 +5,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_user!
     token = extract_token_from_header
-    unless token
-      return render json: { error: 'Authorization token not found.' }, status: :unauthorized
-    end
+    return render json: { error: 'Authorization token not found.' }, status: :unauthorized unless token
 
     begin
       decoded = JwtService.decode(token)

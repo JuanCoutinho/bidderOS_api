@@ -4,9 +4,7 @@ module Api
       def index
         job_description = params[:job_description].to_s.strip
 
-        if job_description.blank?
-          return render json: { error: 'job_description is required.' }, status: :bad_request
-        end
+        return render json: { error: 'job_description is required.' }, status: :bad_request if job_description.blank?
 
         embedding = EmbeddingService.new.generate(job_description)
 
@@ -31,17 +29,11 @@ module Api
         resume_id = params[:resume_id]
         job_description = params[:job_description].to_s.strip
 
-        if resume_id.blank? || job_description.blank?
-          return render json: { error: 'resume_id and job_description are required.' }, status: :bad_request
-        end
+        return render json: { error: 'resume_id and job_description are required.' }, status: :bad_request if resume_id.blank? || job_description.blank?
 
         resume = current_user.resumes.find_by(id: resume_id)
-        if resume.nil?
-          return render json: { error: 'Resume not found.' }, status: :not_found
-        end
-        if resume.content_text.blank?
-          return render json: { error: 'This resume has no extracted text.' }, status: :unprocessable_entity
-        end
+        return render json: { error: 'Resume not found.' }, status: :not_found if resume.nil?
+        return render json: { error: 'This resume has no extracted text.' }, status: :unprocessable_entity if resume.content_text.blank?
 
         letter = CoverLetterService.new(resume.content_text, job_description).generate
 
