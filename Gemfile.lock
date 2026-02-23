@@ -125,6 +125,8 @@ GEM
       prism (~> 1.5)
     msgpack (1.8.0)
     multipart-post (2.4.1)
+    neighbor (0.4.3)
+      activerecord (>= 6.1)
     net-http (0.9.1)
       uri (>= 0.11.1)
     net-imap (0.6.3)
@@ -249,6 +251,7 @@ DEPENDENCIES
   dotenv-rails
   jwt (~> 2.7)
   listen (~> 3.3)
+  neighbor
   pdf-reader
   pg (~> 1.1, < 1.5)
   pgvector
@@ -313,6 +316,7 @@ CHECKSUMS
   minitest (6.0.1) sha256=7854c74f48e2e975969062833adc4013f249a4b212f5e7b9d5c040bf838d54bb
   msgpack (1.8.0) sha256=e64ce0212000d016809f5048b48eb3a65ffb169db22238fb4b72472fecb2d732
   multipart-post (2.4.1) sha256=9872d03a8e552020ca096adadbf5e3cb1cd1cdd6acd3c161136b8a5737cdb4a8
+  neighbor (0.4.3) sha256=d1189825e1c5571c482bfbca9c7ce3c05e68a1c0d525d2fde03f4d8f434fe263
   net-http (0.9.1) sha256=25ba0b67c63e89df626ed8fac771d0ad24ad151a858af2cc8e6a716ca4336996
   net-imap (0.6.3) sha256=9bab75f876596d09ee7bf911a291da478e0cd6badc54dfb82874855ccc82f2ad
   net-pop (0.1.2) sha256=848b4e982013c15b2f0382792268763b748cce91c9e91e36b0f27ed26420dff3

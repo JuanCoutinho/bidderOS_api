@@ -23,6 +23,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'pgvector'
+gem 'neighbor'
 
 gem 'ruby-openai', '~> 7.0'
 
