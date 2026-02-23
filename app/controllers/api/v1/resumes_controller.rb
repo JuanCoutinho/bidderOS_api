@@ -22,7 +22,7 @@ module Api
         end
 
         if errors.any? && processed.empty?
-          return render json: { error: 'All files failed to process.', errors: errors }, status: :unprocessable_entity
+          return render json: { error: 'Oops! We had some trouble processing your files.', errors: errors }, status: :unprocessable_entity
         end
 
         if errors.any?

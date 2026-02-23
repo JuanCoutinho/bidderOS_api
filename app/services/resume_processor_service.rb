@@ -17,7 +17,7 @@ class ResumeProcessorService
     text = extract_text_from_file
 
     if text.blank?
-      raise "Could not extract text from '#{@original_filename}'. The file may be an image (scanned), corrupted, or password-protected. Please try a different PDF or a DOCX file."
+      raise "We couldn't read the text in this file. It might be scanned (an image), password-protected, or corrupted. Please try another PDF or a DOCX file."
     end
 
     embedding = @embedding_service.generate(text)
