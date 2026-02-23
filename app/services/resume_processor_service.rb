@@ -17,7 +17,7 @@ class ResumeProcessorService
     text = extract_text_from_file
 
     if text.blank?
-      raise "Could not extract text from '#{@original_filename}'. The file may be scanned, corrupted, or password-protected."
+      raise "Could not extract text from '#{@original_filename}'. The file may be an image (scanned), corrupted, or password-protected. Please try a different PDF or a DOCX file."
     end
 
     embedding = @embedding_service.generate(text)
@@ -45,6 +45,7 @@ class ResumeProcessorService
     reader.pages.map(&:text).join("\n").strip
   rescue => e
     Rails.logger.error("[ResumeProcessorService] PDF extraction error: #{e.message}")
+    Rails.logger.error(e.backtrace.join("\n"))
     ""
   end
 
@@ -53,6 +54,7 @@ class ResumeProcessorService
     doc.paragraphs.map(&:to_s).join("\n").strip
   rescue => e
     Rails.logger.error("[ResumeProcessorService] DOCX extraction error: #{e.message}")
+    Rails.logger.error(e.backtrace.join("\n"))
     ""
   end
 end
