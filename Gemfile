@@ -28,6 +28,7 @@ gem 'neighbor'
 gem 'ruby-openai', '~> 7.0'
 
 gem 'pdf-reader'
+gem 'docx'
 
 gem 'jwt', '~> 2.7'
 

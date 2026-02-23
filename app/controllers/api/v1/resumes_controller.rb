@@ -21,7 +21,17 @@ module Api
           end
         end
 
-        return render json: { message: 'Processing completed with warnings', processed: processed, errors: errors }, status: :unprocessable_entity unless errors.empty?
+        if errors.any? && processed.empty?
+          return render json: { error: 'All files failed to process.', errors: errors }, status: :unprocessable_entity
+        end
+
+        if errors.any?
+          return render json: {
+            message: 'Some files were processed, but others failed.',
+            processed: processed,
+            errors: errors
+          }, status: :multi_status
+        end
 
         render json: { message: 'Upload completed successfully!', processed: processed }, status: :ok
       end

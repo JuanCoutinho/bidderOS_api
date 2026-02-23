@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore installed gems (use bundle install after cloning)
+/vendor/bundle
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
