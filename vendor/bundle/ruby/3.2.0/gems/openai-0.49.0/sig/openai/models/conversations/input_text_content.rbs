@@ -1,7 +1,0 @@
-module OpenAI
-  module Models
-    module Conversations
-      class InputTextContent = OpenAI::Models::Responses::ResponseInputText
-    end
-  end
-end
